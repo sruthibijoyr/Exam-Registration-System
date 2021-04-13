@@ -1,0 +1,38 @@
+body{
+  background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.sliit.lk%2Fwp-content%2Fuploads%2F2018%2F02%2Fminimalizm-gradient-background.jpg&f=1&nofb=1');
+}
+
+.page-header{
+  color: #fff;
+}
+
+.jumbotron{
+  background: none;
+}
+
+.centered {
+    padding-top: 200px;
+    text-align: center;
+}
+
+.secret-text {
+  text-align: center;
+  font-size: 2rem;
+  color: #fff;
+  background-color: #000;
+}
+
+.blur-bg{
+  background-color:rgba(255,255,255,0.4);
+  border-radius: 10px;
+  padding: 3%;
+}
+
+.icon{
+  color: #fff;
+}
+
+.text{
+  color: #fff;
+  font-size: 1.5em;
+}
