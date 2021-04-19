@@ -1,41 +1,18 @@
 <%- include('partials/header') %>
 
-<div class="container mt-5">
-  <h1 class="page-header">Login</h1>
-
-  <div class="row">
-    <div class="col-sm-8">
-      <div class="card blur-bg">
-        <div class="card-body">
-
-          <!-- Makes POST request to /login route -->
-          <form action="/login" method="POST">
-            <div class="form-group">
-              <label for="uname">Username</label>
-              <input type="text" class="form-control" name="username">
-            </div>
-            <div class="form-group">
-              <label for="password">Password</label>
-              <input type="password" class="form-control" name="password">
-            </div>
-            <button type="submit" class="btn btn-dark">Login</button>
-          </form>
-
-        </div>
-      </div>
-    </div>
-
-    <!-- <div class="col-sm-4">
-      <div class="card">
-        <div class="card-body">
-          <a class="btn btn-block" href="/auth/google" role="button">
-            <i class="fab fa-google"></i>
-            Sign In with Google
-          </a>
-        </div>
-      </div>
-    </div> -->
-
+<div class="animated bounceInDown">
+  <div class="container-login">
+    <span class="animated tada"></span>
+    <form name="form1" class="box" action="/login" method="POST">
+      <h4>User<span>Login</span></h4>
+      <br>
+      <h5>Sign in to your account.</h5>
+        <input type="text" name="username" placeholder="Username" autocomplete="off">
+        <i class="typcn typcn-eye" id="eye"></i>
+        <input type="password" name="password" placeholder="Passsword" id="pwd" autocomplete="off">
+        <input type="submit" value="Sign in" class="btn1">
+      </form>
+        <a href="/register" class="dnthave">Don’t have an account? Sign up</a>
   </div>
 </div>
 

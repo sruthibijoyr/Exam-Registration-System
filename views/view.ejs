@@ -1,17 +1,23 @@
 <%- include('partials/header') %>
 
-<div class="container">
-  <div class="jumbotron centered">
-    <i class="fas fa-key fa-6x"></i>
-    <h1 class="display-3">Exam Catalog</h1>
 
-    <form action="/submit" method="POST">
+<%- include('partials/navbar') %>
 
-      <div class="form-group">
-        <input type="text" class="form-control text-center" name="secret" placeholder="Exam Code">
+
+<div class="catalog">
+  <i class="fas fa-book-open fa-6x "></i>
+  <h1 class="display-6 title">Exam Catalog</h1>
+
+  <form action="/search" method="POST">
+    <div class="searchBox">
+          <input class="searchInput"type="text" name="code" placeholder="Exam Code" autocomplete="off">
+          <button class="searchButton">
+              <i class="fas fa-search"></i>
+          </button>
       </div>
-      <button type="submit" class="btn btn-dark">Search</button>
-    </form>
-  </div>
+  </form>
+
 </div>
+
+
 <%- include('partials/footer') %>
