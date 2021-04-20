@@ -1,0 +1,33 @@
+<%- include('partials/header') %>
+
+
+<%- include('partials/navbar') %>
+
+<div class="regexam">
+
+  <div class="row">
+
+    <% for(var i=0; i<regexams.length; i++) {%>
+    <% var link = "/"+regexams[i]%>
+    <% console.log(link)%>
+    <div class=<%= classes %>>
+      <div class="card">
+        <div class="card-header">
+          <h3 class="pricing-type">Exam Code <%= regexams[i] %></h3>
+        </div>
+        <div class="card-body">
+          <% if(pay[i]==0){ %>
+            <a href="<%= link %>" ><button type="button" class="btn-block download-btn btn btn-dark btn-lg">Pay</button></a>
+          <%} else { %>
+            <a href="<%= link %>" ><button type="button" disabled="disabled" class="btn-block download-btn btn btn-dark btn-lg">Payed</button></a>
+          <% } %>
+        </div>
+      </div>
+    </div>
+    <% } %>
+
+  </div>
+</div>
+
+
+<%- include('partials/footer') %>

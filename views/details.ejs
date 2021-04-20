@@ -21,13 +21,18 @@
                 <td><%= ename %></td>
               </tr>
               <tr>
-                <th>Mumber of registrations</th>
-                <td><%= ename %></td>
+                <th>Number of registrations</th>
+                <td><%= regnum %></td>
               </tr>
             </table>
             <input type="hidden" name="name" value="<%= ename %>">
             <input type="hidden" name="code" value="<%= ecode %>">
-            <input type="submit" value="Register" class="btn1">
+            <%console.log(regval);%>
+            <% if(regval == 0){%>
+              <input type="submit" value="Registered" disabled="disabled" class="btn1">
+            <%}else{%>
+              <input type="submit" value="Register" class="btn1">
+            <%}%>
           <%}%>
         </form>
         <a href="/view" class="search-go-back">Go Back</a>

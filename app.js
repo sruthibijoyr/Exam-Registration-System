@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const mongoose = require("mongoose");
 const session = require('express-session');
+const _ = require("lodash");
 
 var sess;
 
@@ -17,14 +18,14 @@ app.use(bodyParser.urlencoded({
   extended:true
 }));
 
-mongoose.connect("mongodb://localhost:27017/userDB");
+mongoose.connect("mongodb://localhost:27017/examregDB");
 
 
 const examSchema = {
   ecode: String,
-  ename: String
+  ename: String,
+  regnum: Number
 };
-
 
 
 const Exam = new mongoose.model("Exam", examSchema);
@@ -34,7 +35,8 @@ const userSchema = {
   username: String,
   password: String,
   usertype: String,
-  exams: [String]
+  exams: [String],
+  payment: [Number]
 };
 
 const User = new mongoose.model("User",userSchema);
@@ -75,10 +77,11 @@ app.post("/register", function(req,res){
   const newUser = new User({
     username: req.body.username,
     password: req.body.password,
-    usertype: req.body.usertype,
-    exams: []
+    usertype: "student",
+    exams: [],
+    payment: []
   });
-  console.log("llala",newUser.usertype);
+  //console.log("llala",newUser.usertype);
   newUser.save(function(err){
     if(err){
       res.send(err);
@@ -125,14 +128,31 @@ app.post("/search", function(req,res){
     }
     else{
       if(foundExam){
+
         const name = foundExam.ename;
-        res.render("details",{ecode:code,ename:name, username:uname});
+        const num = foundExam.regnum;
+        User.findOne({username: uname}, function(err,foundUser){
+          if(err){
+            console.log(err);
+          }
+          else{
+            if(foundUser){
+              var exams = foundUser.exams;
+              if(exams.includes(code)){
+                res.render("details",{ecode:code,ename:name, username:uname, regnum: num, regval : 0});
+              }
+              else{
+                res.render("details",{ecode:code,ename:name, username:uname, regnum: num, regval : 1});
+              }
+              //console.log(exams,val,code);
+            }
+        }});
       }
       else{
         res.render("details",{ecode:0});
       }
     }
-  })
+  });
 });
 
 app.post("/registerExam", function(req,res){
@@ -154,6 +174,13 @@ app.post("/registerExam", function(req,res){
               else{
                 if(foundExam){
                   foundUser.exams.push(code);
+                  foundUser.payment.push(0);
+                  foundExam.regnum += 1;
+                  foundExam.save(function(err){
+                    if(err){
+                      res.send(err);
+                    }
+                  });
                   foundUser.save(function(err){
                     if(err){
                       res.send(err);
@@ -173,6 +200,55 @@ app.post("/registerExam", function(req,res){
         }
     });
   });
+
+app.get("/viewreg", function(req,res){
+  sess = req.session;
+  const uname = sess.username;
+  User.findOne({username:uname},function(err,foundUser){
+    if(err){
+      console.log(err);
+    }
+    else{
+      if(foundUser){
+        const exams = foundUser.exams;
+        const payment = foundUser.payment;
+        var n = 12/exams.length;
+        var classes = "pricing-col col-lg-"+n+" col-md-6";
+        console.log(classes);
+        res.render("viewreg",{regexams:exams,classes:classes,pay:payment});
+      }
+    }
+  });
+});
+
+app.get("/:examCode", function(req,res){
+  const examCode = _.capitalize(req.params.examCode);
+  console.log(examCode);
+  sess = req.session;
+  const uname = sess.username;
+  var tempPayments;
+  User.findOne({username: uname}, function(err, foundUser){
+    if(!err){
+        if(foundUser){
+          tempPayments = foundUser.payment;
+          for(var i=0;i<foundUser.exams.length;++i){
+            if(foundUser.exams[i] == examCode){
+              tempPayments[i]=1;
+              break;
+            }
+          }
+          console.log("temp",tempPayments);
+          User.updateOne({username:uname},{payment:tempPayments}).exec((err, posts) => {
+            if(err)
+              console.log(err)
+            else
+              console.log(posts)
+          })
+          res.render("dashboard",{username:uname});
+        }
+      }
+    });
+});
 
 app.listen(3000,function(){
   console.log("Server started on port 3000.");
