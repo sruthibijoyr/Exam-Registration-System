@@ -1,0 +1,44 @@
+<%- include('partials/header') %>
+<%- include('partials/navbarcoe') %>
+
+<div class="animated bounceInDown">
+  <div class="container-reg">
+    <span class="animated tada" ></span>
+    <form name="form2" class="box" action="/addexam" method="POST">
+      <h4>Add<span> Exam</span></h4>
+      <br>
+        <input type="text" name="ename" placeholder="Exam Name" autocomplete="off">
+        <input type="text" name="ecode" placeholder="Exam Code" autocomplete="off">
+        <select id="select-ele" class="custom-select" name="edept" onchange="changeColor()">
+          <option value="" disabled selected>Exam Department</option>
+          <option value="cse">Computer Science</option>
+          <option value="it">Information Technology</option>
+          <option value="ece">Electronics and Communicationz</option>
+          <option value="eee">Electrical and Electronics</option>
+          <option value="mech">Mechanical</option>
+          <option value="civil">Civil</option>
+          <option value="chem">Chemical</option>
+          <option value="bme">Bio Medical</option>
+        </select>
+        <input type="date" name="edate">
+
+        <select id="select-ele" class="custom-select" name="esess" onchange="changeColor()">
+            <option value="" disabled selected>Exam Session</option>
+            <option value="AN">Afternoon</option>
+            <option value="FN">Forenoon</option>
+        </select><br>
+        <input type="submit" value="Add Exam" class="btn2">
+      </form>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  function changeColor(ele){
+    console.log("selected");
+    var element = document.getElementById("select-ele");
+    element.style.color = "#d6d6d6";
+  }
+</script>
+
+<%- include('partials/footer') %>

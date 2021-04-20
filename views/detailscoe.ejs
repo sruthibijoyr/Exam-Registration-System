@@ -1,0 +1,44 @@
+<%- include('partials/header') %>
+
+<%- include('partials/navbarcoe') %>
+
+<div class="animated bounceInDown">
+  <div class="container-search">
+    <span class="animated tada"></span>
+        <form name="form3" class="box" action="/registerExam" method="POST">
+          <h4>Search<span>Result</span></h4>
+          <br>
+          <% if(ecode == "0"){%>
+            <h5>No matching results.</h5>
+          <%}else{%>
+            <table class="exam-details">
+              <tr>
+                <th>Exam Code</th>
+                <td><%= ecode %></td>
+              </tr>
+              <tr>
+                <th>Exam Department</th>
+                <td><%= edept %></td>
+              </tr>
+              <tr>
+                <th>Exam Name</th>
+                <td><%= ename %></td>
+              </tr>
+              <tr>
+                <th>Exam Date</th>
+                <td><%= edate %></td>
+              </tr>
+              <tr>
+                <th>Exam Session</th>
+                <td><%= esess %></td>
+              </tr>
+              <tr>
+                <th>Number of registrations</th>
+                <td><%= ename %></td>
+              </tr>
+            </table>
+          <%}%>
+        </form>
+  </div>
+</div>
+<%- include('partials/footer') %>

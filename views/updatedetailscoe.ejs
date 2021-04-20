@@ -1,0 +1,42 @@
+
+<%- include('partials/header') %>
+
+<%- include('partials/navbarcoe') %>
+
+<div class="animated bounceInDown">
+  <div class="container-search">
+    <span class="animated tada"></span>
+        <form name="form3" class="box" action="/addexam" method="POST">
+          <h4>Search<span>Result</span></h4>
+          <br>
+          <% if(ecode == "0"){%>
+            <h5>No matching results.</h5>
+          <%}else{%>
+            <table class="exam-details">
+              <tr>
+                <th>Exam Code</th>
+                <td><%= ecode %></td>
+              </tr>
+              <tr>
+                <th>Exam Name</th>
+                <td><%= ename %></td>
+              </tr>
+              <tr>
+                <th>Exam Old Date</th>
+                <td><%= edate %></td>
+              </tr>
+              <tr>
+                <th>Exam New Date</th>
+                <td><input type="date" name="edate"></td>
+              </tr>
+            </table>
+            <input type="hidden" name="ename" value="<%= ename %>">
+            <input type="hidden" name="ecode" value="<%= ecode %>">
+            <input type="hidden" name="edept" value="<%= edept %>">
+            <input type="hidden" name="esess" value="<%= esess %>">
+            <input type="submit" value="Reschedule" class="btn1">
+          <%}%>
+        </form>
+  </div>
+</div>
+<%- include('partials/footer') %>

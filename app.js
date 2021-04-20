@@ -24,7 +24,10 @@ mongoose.connect("mongodb://localhost:27017/examregDB");
 const examSchema = {
   ecode: String,
   ename: String,
-  regnum: Number
+  regnum: Number,
+  edept: String,
+  edate: Date,
+  esess: String
 };
 
 
@@ -73,11 +76,12 @@ app.get("/logout", function(req,res){
   });
 });
 
+
 app.post("/register", function(req,res){
   const newUser = new User({
     username: req.body.username,
     password: req.body.password,
-    usertype: "student",
+    usertype: req.body.usertype,
     exams: [],
     payment: []
   });
@@ -89,7 +93,12 @@ app.post("/register", function(req,res){
     else{
       sess = req.session;
       sess.username = req.body.username;
+      if(req.body.usertype == "student"){
       res.render("dashboard",{username:req.body.username});
+    }
+    else{
+      res.render("coeinfo",{username:req.body.username});
+    }
     }
   });
 });
@@ -110,6 +119,11 @@ app.post("/login", function(req,res){
             sess = req.session;
             sess.username = uname;
             res.render("dashboard",{username:uname});
+        }
+        else if(foundUser.usertype == "coe"){
+          sess = req.session;
+          sess.username = uname;
+          res.render("coeinfo",{username:uname});
         }
       }
       else{
@@ -221,34 +235,183 @@ app.get("/viewreg", function(req,res){
   });
 });
 
-app.get("/:examCode", function(req,res){
-  const examCode = _.capitalize(req.params.examCode);
-  console.log(examCode);
+
+//------------------------COE---------------------------
+
+app.get("/coeinfo",function(req,res){
   sess = req.session;
   const uname = sess.username;
-  var tempPayments;
-  User.findOne({username: uname}, function(err, foundUser){
-    if(!err){
-        if(foundUser){
-          tempPayments = foundUser.payment;
-          for(var i=0;i<foundUser.exams.length;++i){
-            if(foundUser.exams[i] == examCode){
-              tempPayments[i]=1;
-              break;
-            }
-          }
-          console.log("temp",tempPayments);
-          User.updateOne({username:uname},{payment:tempPayments}).exec((err, posts) => {
-            if(err)
-              console.log(err)
-            else
-              console.log(posts)
-          })
-          res.render("dashboard",{username:uname});
-        }
+  res.render("coeinfo",{username:uname});
+});
+
+app.get("/viewcoe", function(req,res){
+  sess = req.session;
+  const uname = sess.username;
+  res.render("viewcoe",{username:uname});
+});
+
+app.get("/viewupdate", function(req,res){
+  sess = req.session;
+  const uname = sess.username;
+  res.render("viewupdate",{username:uname});
+});
+
+app.get("/viewdelete", function(req,res){
+  sess = req.session;
+  const uname = sess.username;
+  res.render("viewdelete",{username:uname});
+});
+
+app.get("/manage", function(req,res){
+  sess = req.session;
+  const uname = sess.username;
+  res.render("manage",{username:uname});
+});
+
+app.get("/addexam", function(req,res){
+  sess = req.session;
+  const uname = sess.username;
+  res.render("addexam",{username:uname});
+});
+
+
+app.post("/searchcoe", function(req,res){
+  const code = req.body.code;
+  sess = req.session;
+  const uname = sess.username;
+  Exam.findOne({ecode:code}, function(err,foundExam){
+    if(err){
+      console.log(err);
+    }
+    else{
+      if(foundExam){
+        const name = foundExam.ename;
+        const date = foundExam.edate.getDate() + "/" + foundExam.edate.getMonth()  // get full date
+        const sess = foundExam.esess
+        const dept = foundExam.edept
+        res.render("detailscoe",{ecode:code,ename:name, edate: date, esess: sess, edept: dept, username:uname});
+      }
+      else{
+        res.render("detailscoe",{ecode:0});
+      }
+    }
+  })
+});
+
+app.post("/addexam", function(req,res){
+    const newExam = new Exam({
+      ename: req.body.ename,
+      ecode: req.body.ecode,
+      edate: req.body.edate,
+      edept: req.body.edept,
+      esess: req.body.esess,
+      regnum: 0
+    });
+    console.log("Exam Added", newExam.ename);
+    newExam.save(function(err){
+      if(err){
+        res.send(err);
+      }
+      else{
+        sess = req.session;
+        const uname = sess.username;
+        res.render("coeinfo",{username:uname});
       }
     });
-});
+  });
+
+  app.post("/updateexam", function(req,res){
+    const code = req.body.code;
+    sess = req.session;
+    const uname = sess.username;
+    Exam.findOneAndDelete({ecode:code}, function(err,foundExam){
+      if(err){
+        console.log(err);
+      }
+      else{
+        if(foundExam){
+          const name = foundExam.ename;
+          const date = foundExam.edate.getDate() + "/" + foundExam.edate.getMonth()  // get full date
+          const sess = foundExam.esess
+          const dept = foundExam.edept
+          res.render("updatedetailscoe",{ecode:code,ename:name, edate: date, esess: sess, edept: dept, username:uname});
+        }
+        else{
+          res.render("updatedetailscoe",{ecode:0});
+        }
+      }
+    })
+  });
+
+  app.post("/deleteexam", function(req,res){
+    const code = req.body.code;
+    sess = req.session;
+    const uname = sess.username;
+    Exam.findOne({ecode:code}, function(err,foundExam){
+      if(err){
+        console.log(err);
+      }
+      else{
+        if(foundExam){
+          const name = foundExam.ename;
+          const date = foundExam.edate.getDate() + "/" + foundExam.edate.getMonth()  // get full date
+          const sess = foundExam.esess
+          const dept = foundExam.edept
+          res.render("deletedetailscoe",{ecode:code,ename:name, edate: date, esess: sess, edept: dept, username:uname});
+        }
+        else{
+          res.render("deletedetailscoe",{ecode:0});
+        }
+      }
+    })
+  });
+
+  app.post("/confirmdelete", function(req,res){
+    const code = req.body.code;
+    sess = req.session;
+    const uname = sess.username;
+    Exam.deleteOne({ecode:code}, function(err,foundExam){
+      if(err){
+        console.log(err);
+      }
+      else{
+        sess = req.session;
+        const uname = sess.username;
+        res.render("coeinfo",{username:uname});
+      }
+    })
+  });
+
+  app.get("/:examCode", function(req,res){
+    const examCode = _.capitalize(req.params.examCode);
+    console.log(examCode);
+    sess = req.session;
+    const uname = sess.username;
+    var tempPayments;
+    User.findOne({username: uname}, function(err, foundUser){
+      if(!err){
+          if(foundUser){
+            tempPayments = foundUser.payment;
+            for(var i=0;i<foundUser.exams.length;++i){
+              if(foundUser.exams[i] == examCode){
+                tempPayments[i]=1;
+                break;
+              }
+            }
+            console.log("temp",tempPayments);
+            User.updateOne({username:uname},{payment:tempPayments}).exec((err, posts) => {
+              if(err)
+                console.log(err)
+              else
+                console.log(posts)
+            })
+            res.render("dashboard",{username:uname});
+          }
+        }
+      });
+  });
+
+//-----------------------
 
 app.listen(3000,function(){
   console.log("Server started on port 3000.");

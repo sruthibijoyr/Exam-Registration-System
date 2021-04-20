@@ -1,0 +1,38 @@
+<%- include('partials/header') %>
+
+
+<%- include('partials/navbarcoe') %>
+
+
+<div class="catalog">
+  <i class="fas fa-book-open fa-6x "></i>
+  <h1 class="display-6 title">Manage Exams</h1>
+
+
+  <div class="row features" background-color="red">
+    
+    <div class="feature-box col-lg-3">
+      <a href="/addexam"><i class="fas fa-plus feature-icon fa-5x"></i></a>
+      <h3 class="feature-heading">Add Exam</h3>
+    </div>
+
+    <div class="feature-box col-lg-3">
+      <a href="/viewcoe"><i class="feature-icon fas fa-eye fa-5x"></i></a>
+      <h3 class="feature-heading">View Exam</h3>
+    </div>
+
+    <div class="feature-box col-lg-3">
+      <a href="/viewupdate"><i class="feature-icon fas fa-edit fa-5x"></i></a>
+      <h3 class="feature-heading">Reschedule Exam</h3>
+    </div>
+
+    <div class="feature-box col-lg-3">
+        <a href="/viewdelete"><i class="feature-icon fas fa-trash fa-5x"></i></a>
+        <h3 class="feature-heading">Delete Exam</h3>
+    </div>
+  </div>
+
+</div>
+
+
+<%- include('partials/footer') %>
