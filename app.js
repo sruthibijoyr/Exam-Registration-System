@@ -286,7 +286,8 @@ app.post("/searchcoe", function(req,res){
     else{
       if(foundExam){
         const name = foundExam.ename;
-        const date = foundExam.edate.getDate() + "/" + foundExam.edate.getMonth()  // get full date
+        const month = foundExam.edate.getMonth()+1
+        const date = foundExam.edate.getDate() + "/" + month  // get full date
         const sess = foundExam.esess
         const dept = foundExam.edept
         res.render("detailscoe",{ecode:code,ename:name, edate: date, esess: sess, edept: dept, username:uname});
@@ -331,7 +332,8 @@ app.post("/addexam", function(req,res){
       else{
         if(foundExam){
           const name = foundExam.ename;
-          const date = foundExam.edate.getDate() + "/" + foundExam.edate.getMonth()  // get full date
+          const month = foundExam.edate.getMonth()+1
+          const date = foundExam.edate.getDate() + "/" + month  // get full date
           const sess = foundExam.esess
           const dept = foundExam.edept
           res.render("updatedetailscoe",{ecode:code,ename:name, edate: date, esess: sess, edept: dept, username:uname});
@@ -354,7 +356,8 @@ app.post("/addexam", function(req,res){
       else{
         if(foundExam){
           const name = foundExam.ename;
-          const date = foundExam.edate.getDate() + "/" + foundExam.edate.getMonth()  // get full date
+          const month = foundExam.edate.getMonth()+1
+          const date = foundExam.edate.getDate() + "/" + month  // get full date
           const sess = foundExam.esess
           const dept = foundExam.edept
           res.render("deletedetailscoe",{ecode:code,ename:name, edate: date, esess: sess, edept: dept, username:uname});
