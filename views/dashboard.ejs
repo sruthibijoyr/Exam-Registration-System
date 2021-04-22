@@ -2,12 +2,36 @@
 
 <%- include('partials/navbar') %>
 
-  <div class="container dashboard">
+  <div class="container-dashboard">
     <i class="fas fa-user fa-6x "></i>
     <h1 class="display-6 title">Student Dashboard</h1>
-    <p class="text">Welcome <%= username %>.</p>
+    <h2 class="text">Welcome <%= username %></h2>
   </div>
 
+  <section id="about" class="about">
+      <div class="container" data-aos="fade-up">
+          <div class="section-title">
+              <h2>About</h2>
+              <h3>Find Out More <span>About Us</span></h3>
+              <p>Welcome to the Exam Registration System!</p>
+          </div>
+          <div class="row">
+              <div class="col-lg-6" data-aos="zoom-out" data-aos-delay="100">
+                  <img style="width:5000px" src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.pngmart.com%2Ffiles%2F7%2FExam-PNG-Transparent-Image.png&f=1&nofb=1" class="img-fluid" alt="">
+              </div>
+              <div class="col-lg-6 pt-4 pt-lg-0 content d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="100">
+                  <h3>Ever strugged to register for your exams? Well, that ends today!</h3>
+                  <p class="font-italic">
+                      Our team uses the latest frameworks, to provide a hassle free registration environment.
+                  </p>
+
+                  <h5> All your exams at your fingertips. </h5>
+                  <p> Head over to the exam catalog to browse through the exams and register with just a click . </p>
+
+              </div>
+          </div>
+      </div>
+  </section>
 
   <div class="row features">
     <div class="feature-box col-lg-4">

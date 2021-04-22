@@ -357,7 +357,7 @@ app.post("/addexam", function(req,res){
           const date = foundExam.edate.getDate() + "/" + foundExam.edate.getMonth()  // get full date
           const sess = foundExam.esess
           const dept = foundExam.edept
-          res.render("deletedetailscoe",{ecode:code,ename:name, edate: date, esess: sess, edept: dept, username:uname});
+          res.render("deletedetailscoe",{ecode:code,ename:name, edate: date, esess: sess, edept: dept, username:uname});n
         }
         else{
           res.render("deletedetailscoe",{ecode:0});

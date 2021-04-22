@@ -1,41 +1,43 @@
 <%- include('partials/header') %>
 
 <%- include('partials/navbar') %>
-
-<div class="animated bounceInDown">
-  <div class="container-search">
-    <span class="animated tada"></span>
-        <form name="form3" class="box" action="/registerExam" method="POST">
-          <h4>Search<span>Result</span></h4>
-          <br>
-          <% if(ecode == "0"){%>
-            <h5>No matching results.</h5>
-          <%}else{%>
-            <table class="exam-details">
-              <tr>
-                <th>Exam Code</th>
-                <td><%= ecode %></td>
-              </tr>
-              <tr>
-                <th>Exam Name</th>
-                <td><%= ename %></td>
-              </tr>
-              <tr>
-                <th>Number of registrations</th>
-                <td><%= regnum %></td>
-              </tr>
-            </table>
-            <input type="hidden" name="name" value="<%= ename %>">
-            <input type="hidden" name="code" value="<%= ecode %>">
-            <%console.log(regval);%>
-            <% if(regval == 0){%>
-              <input type="submit" value="Registered" disabled="disabled" class="btn1">
+<div class="cover-box">
+  <div class="animated bounceInDown ">
+    <div class="container-search">
+      <span class="animated tada"></span>
+          <form name="form3" class="box" action="/registerExam" method="POST">
+            <h4>Search<span>Result</span></h4>
+            <br>
+            <% if(ecode == "0"){%>
+              <h5>No matching results.</h5>
             <%}else{%>
-              <input type="submit" value="Register" class="btn1">
+              <table class="exam-details">
+                <tr>
+                  <th>Exam Code</th>
+                  <td><%= ecode %></td>
+                </tr>
+                <tr>
+                  <th>Exam Name</th>
+                  <td><%= ename %></td>
+                </tr>
+                <tr>
+                  <th>Number of registrations</th>
+                  <td><%= regnum %></td>
+                </tr>
+              </table>
+              <input type="hidden" name="name" value="<%= ename %>">
+              <input type="hidden" name="code" value="<%= ecode %>">
+              <%console.log(regval);%>
+              <% if(regval == 0){%>
+                <input type="submit" value="Registered" disabled="disabled" class="btn1">
+              <%}else{%>
+                <input type="submit" value="Register" class="btn1">
+              <%}%>
             <%}%>
-          <%}%>
-        </form>
-        <a href="/view" class="search-go-back">Go Back</a>
+          </form>
+          <a href="/view" class="search-go-back">Go Back</a>
+    </div>
   </div>
+
 </div>
 <%- include('partials/footer') %>

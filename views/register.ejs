@@ -11,7 +11,7 @@
         <i class="typcn typcn-eye" id="eye"></i>
         <input type="password" name="password" placeholder="Passsword" id="pwd" autocomplete="off">
         <i class="typcn typcn-eye" id="eye"></i>
-        <select id="select-ele" class="custom-select" name="usertype" onchange="changeColor()">
+        <select id="select-ele" class="custom-select" name="usertype">
           <option value="" disabled selected>User type</option>
           <option value="student">Student</option>
           <option value="coe">CoE</option>
@@ -22,13 +22,5 @@
   </div>
 </div>
 
-
-<script type="text/javascript">
-  function changeColor(ele){
-    console.log("selected");
-    var element = document.getElementById("select-ele");
-    element.style.color = "#d6d6d6";
-  }
-</script>
 
 <%- include('partials/footer') %>
