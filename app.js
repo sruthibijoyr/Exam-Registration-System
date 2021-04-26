@@ -133,9 +133,9 @@ app.use(bodyParser.urlencoded({
   extended:true
 }));
 
-mongoose.connect("mongodb://localhost:27017/examregDB");
+//mongoose.connect("mongodb://localhost:27017/examregDB");
 
-
+mongoose.connect("mongodb+srv://exam-admin:exam@cluster0.ocxae.mongodb.net/examDB");
 
 const examSchema = {
   ecode: String,
@@ -708,6 +708,24 @@ app.post("/addexam", function(req,res){
     res.render("examfinal",{username:uname, examlist:exams});
   });
 
+
+    app.post("/addresult", function(req,res){
+      const newMark = new Mark({
+        username: req.body.sname,
+        exam: req.body.ecode,
+        mark: req.body.marks
+      });
+      console.log("Result Added", newMark.ename);
+      newMark.save(function(err){
+        if(err){
+          res.send(err);
+        }
+        else{
+          res.redirect("/addexam");
+        }
+      });
+    });
+
   app.get("/:url", function(req,res){
     const url = req.params.url;
     newUrl = url.slice(0, 3);
@@ -744,22 +762,6 @@ app.post("/addexam", function(req,res){
     }
   });
 
-  app.post("/addresult", function(req,res){
-    const newMark = new Mark({
-      username: req.body.sname,
-      exam: req.body.ecode,
-      mark: req.body.marks
-    });
-    console.log("Result Added", newMark.ename);
-    newMark.save(function(err){
-      if(err){
-        res.send(err);
-      }
-      else{
-        res.redirect("/addexam");
-      }
-    });
-  });
 
 //-----------------------
 

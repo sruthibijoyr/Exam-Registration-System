@@ -7,7 +7,7 @@
 
   <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
     <h1 class="display-4">Registered Exams</h1>
-    <p class="lead">The following are all the exams you havce registered for. Click on the pay button to make pending registration payments.</p>
+    <p class="lead">The following are all the exams you have registered for. Click on the pay button to make pending registration payments.</p>
   </div>
 
   <div class="row">
@@ -18,7 +18,7 @@
       <div class="card-deck mb-3 text-center">
         <div class="card mb-4 shadow-sm">
           <div class="card-header">
-            <h4 class="my-0 font-weight-normal">Exam Code <%= regexams[i].code %></h4>
+            <h5 class="my-0 font-weight-normal">Exam Code <%= regexams[i].code %></h5>
             <br>
             <h5 class="my-0 font-weight-normal">Exam Name <%= regexams[i].name %></h5>
             <br>
@@ -26,9 +26,9 @@
           </div>
           <div class="card-body">
             <% if(pay[i]==0){ %>
-              <a class="btn-disabled" href=<%= link %> ><button type="button" class="btn btn-lg btn-block btn-primary">Pay</button></a>
+              <a class="btn-disabled" href=<%= link %> ><button type="button" class="btn btn-lg btn-block btn1">Pay</button></a>
             <%} else { %>
-              <a class="btn-disabled" href=<%= link %> ><button type="button" disabled class="btn btn-lg btn-block btn-primary ">Payed</button></a>
+              <a class="btn-disabled" href=<%= link %> ><button type="button" disabled class="btn btn-lg btn-block btn1">Paid</button></a>
             <% } %>
           </div>
         </div>

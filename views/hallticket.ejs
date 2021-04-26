@@ -4,15 +4,23 @@
   <div class="animated bounceInDown" style="padding-top:5%; background:#fff; padding-bottom: 9%;">
     <div class="container-ht">
       <% if(student.gender == "Female"){ %>
-        <img class="hallticket-img" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmaxcdn.icons8.com%2FShare%2Ficon%2FUsers%2Fcircled_user_female1600.png&f=1&nofb=1" alt="">
+        <img class="hallticket-img" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.icon-icons.com%2Ficons2%2F2630%2FPNG%2F512%2Favatar_girl_woman_glasses_blonde_hair_icon_159132.png&f=1&nofb=1" alt="">
       <%}else{%>
-        <img class="hallticket-img" src="https://www.pinclipart.com/picdir/big/165-1653686_female-user-icon-png-download-user-colorful-icon.png" alt="">
+        <img class="hallticket-img" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.icon-icons.com%2Ficons2%2F2630%2FPNG%2F512%2Fdiversity_avatar_man_boy_sunglasses_people_icon_159090.png&f=1&nofb=1" alt="">
       <%}%>
       <h1 class="display-5" style="color:#5c6bc0"><%= student.name %></h1>
-      <p class="my-2 font-weight-normal">     ID :  <%= student.username %> | DOB : <%= student.dob.slice(0,10) %> </p>
-      <p class="my-2 font-weight-normal">    Gender : <%= student.gender %> | Department : <%= student.department %></p>
-      <div class="my-2 font-weight-normal" >
-      <table style="width:100%;">
+      <h7 class="font-weight-normal">ID :  <%= student.username %>  </h7>
+      <br>
+      <h7 class="font-weight-normal">DOB : <%= student.dob.slice(0,10) %> </h7>
+      <br>
+      <h7 class="font-weight-normal">Gender : <%= student.gender %> </h7>
+      <br>
+      <h7 class="font-weight-normal">Department : <%= student.department %></h7>
+      <br>
+      <br>
+      <hr>
+      <div >
+      <table style="width:100%; text-align: center;">
         <tr>
           <th>Code</th>
           <th>Name</th>

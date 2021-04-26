@@ -1,10 +1,10 @@
 <%- include('partials/header') %>
 
 <%- include('partials/navbarcoe') %>
-
+<div style="background:#fff; padding:3% 5% 25% 5%; ">
 <h1 class="info-heading">Student Information</h1>
 <div class="tbl-header">
-  <table cellpadding="0" cellspacing="0" border="0">
+  <table>
     <thead>
       <tr>
         <th>Name</th>
@@ -19,22 +19,29 @@
   </table>
 </div>
 <div class="tbl-content">
-  <table cellpadding="0" cellspacing="0" border="0">
+  <table >
     <tbody>
       <% for(var i=0;i<students.length;++i){ %>
-        <tr>
-          <th><%= students[i].getName() %></th>
-          <th><%= students[i].getUsername() %></th>
-          <th><%= students[i].getDOB().toLocaleDateString('en-US') %></th>
-          <th><%= students[i].getGender() %></th>
-          <th><%= students[i].getDepartment() %></th>
-          <th>
+        <% if(i%2 == 0) {%>
+          <tr style="background: #f9f3f3; ">
+        <%}else {%>
+          <tr style="background: #dcd6f7;">
+        <%}%>
+          <th class="student-col"><%= students[i].getName() %></th>
+          <th class="student-col"><%= students[i].getUsername() %></th>
+          <th class="student-col"><%= students[i].getDOB().toLocaleDateString('en-US') %></th>
+          <th class="student-col"><%= students[i].getGender() %></th>
+          <th class="student-col"><%= students[i].getDepartment() %></th>
+          <th class="student-col">
             <% var regs = students[i].getRegistrations() %>
             <% for(var j=0;j<regs.length;++j){ %>
               <%= regs[j].getCode() %>
+              <%if(j!=regs.length-1){%>
+                ,
+              <%}%>
             <% } %>
           </th>
-          <th>
+          <th class="student-col">
             <% var payed = students[i].getHallticket() %>
             <% for(var j=0;j<payed.length;++j){ %>
               <%= payed[j].getCode() %>
@@ -46,6 +53,6 @@
     </tbody>
   </table>
 </div>
-
+</div>
 
 <%- include('partials/footer') %>

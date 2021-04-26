@@ -2,37 +2,42 @@
 
 <%- include('partials/navbar') %>
 
-<h1 class="info-heading">RESULTS</h1>
-<div class="tbl-header">
-  <table cellpadding="0" cellspacing="0" border="0">
-    <thead>
-      <tr>
-        <th>Student ID</th>
-        <th>Exam Code</th>
-        <th>Exam Name</th>
-        <th>Exam Date</th>
-        <th>Department</th>
-        <th>Marks</th>
-      </tr>
-    </thead>
-  </table>
+<div style="background:#fff; padding:3% 5% 25% 5%; ">
+  <h1 class="info-heading">RESULTS</h1>
+  <div class="tbl-header">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <thead>
+        <tr>
+          <th>Student ID</th>
+          <th>Exam Code</th>
+          <th>Exam Name</th>
+          <th>Exam Date</th>
+          <th>Department</th>
+          <th>Marks</th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+  <div class="tbl-content">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <% for(var i=0;i< results.length;i++){ %>
+          <% if(i%2 == 0) {%>
+            <tr style="background: #f9f3f3;">
+          <%}else {%>
+            <tr style="background: #dcd6f7;">
+          <%}%>
+          <td><%= results[i].username %></td>
+          <td><%= results[i].exam %></td>
+          <td><%= exams[i].name %></td>
+          <td><%= exams[i].date.toString().slice(0,15) %></td>
+          <td><%= exams[i].department %></td>
+          <td><%= results[i].mark %></td>
+        </tr>
+        <% } %>
+      </tbody>
+    </table>
+  </div>
 </div>
-<div class="tbl-content">
-  <table cellpadding="0" cellspacing="0" border="0">
-    <tbody>
-      <% for(var i=0;i< results.length;i++){ %>
-      <tr>
-        <td><%= results[i].username %></td>
-        <td><%= results[i].exam %></td>
-        <td><%= exams[i].name %></td>
-        <td><%= exams[i].date.toString().slice(0,15) %></td>
-        <td><%= exams[i].department %></td>
-        <td><%= results[i].mark %></td>
-      </tr>
-      <% } %>
-    </tbody>
-  </table>
-</div>
-
 
 <%- include('partials/footer') %>

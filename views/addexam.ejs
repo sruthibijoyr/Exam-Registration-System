@@ -1,40 +1,42 @@
 <%- include('partials/header') %>
 <%- include('partials/navbarcoe') %>
-<div class="cover-box">
-  <div class="animated bounceInDown">
-    <div class="container-reg" style="height:700px">
-      <span class="animated tada" ></span>
-      <form name="form2" class="box" action="/addexam" method="POST">
-        <h4>Add<span> Exam</span></h4>
-        <br>
-          <input type="text" name="ename" placeholder="Exam Name" autocomplete="off">
-          <input type="text" name="ecode" placeholder="Exam Code" autocomplete="off">
-          <select id="select-ele" class="custom-select" name="edept" onchange="changeColor()">
-            <option value="" disabled selected>Exam Department</option>
-            <option value="cse">Computer Science</option>
-            <option value="it">Information Technology</option>
-            <option value="ece">Electronics and Communicationz</option>
-            <option value="eee">Electrical and Electronics</option>
-            <option value="mech">Mechanical</option>
-            <option value="civil">Civil</option>
-            <option value="chem">Chemical</option>
-            <option value="bme">Bio Medical</option>
-          </select>
-          <input type="date" name="edate">
+<div style="background:#fff; padding-bottom: 15%;">
+  <div class="cover-box">
+    <div class="animated bounceInDown">
+      <div class="container-reg">
+        <span class="animated tada" ></span>
+        <form name="form2" class="box" action="/addexam" method="POST">
+          <h4>Add<span> Exam</span></h4>
+          <br>
+            <input type="text" name="ename" placeholder="Exam Name" autocomplete="off">
+            <input type="text" name="ecode" placeholder="Exam Code" autocomplete="off">
+            <select id="select-ele" class="custom-select" name="edept" onchange="changeColor()">
+              <option value="" disabled selected>Exam Department</option>
+              <option value="cse">Computer Science</option>
+              <option value="it">Information Technology</option>
+              <option value="ece">Electronics and Communicationz</option>
+              <option value="eee">Electrical and Electronics</option>
+              <option value="mech">Mechanical</option>
+              <option value="civil">Civil</option>
+              <option value="chem">Chemical</option>
+              <option value="bme">Bio Medical</option>
+            </select>
+            <input type="date" name="edate">
 
-          <select id="select-ele" class="custom-select" name="esess" onchange="changeColor()">
-              <option value="" disabled selected>Exam Session</option>
-              <option value="AN">Afternoon</option>
-              <option value="FN">Forenoon</option>
-          </select><br>
-          <input type="submit" value="Add Exam" class="btn1">
-        </form>
+            <select id="select-ele" class="custom-select" name="esess" onchange="changeColor()">
+                <option value="" disabled selected>Exam Session</option>
+                <option value="AN">Afternoon</option>
+                <option value="FN">Forenoon</option>
+            </select><br>
+            <input type="submit" value="Add Exam" class="btn1">
+          </form>
+      </div>
+      <br>
+      <br>
     </div>
-    <br>
-    <br>
+  <br>
   </div>
-<br>
-</div>
 
+</div>
 
 <%- include('partials/footer') %>
