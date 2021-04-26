@@ -3,26 +3,29 @@
 <%- include('partials/navbarcoe') %>
 
 <div class="animated bounceInDown">
-  <div class="container-reg">
+  <div class="container-schedform">
     <span class="animated tada" ></span>
     <form name="form2" id="form2" class="box" action="/examentry" method="POST">
         <h4>Schedule<span> Exam</span></h4>
-        <br>
-        Enter Minimum Leave<br>
-        <input type="number" class="custom-text" name="minleave" placeholder="Minimum Study Leave"><br>
-        Enter Number of Exams<br>
-        <input type="number" class="custom-text" name="no_exams" placeholder="Enter Number of Exams"><br>
+    
+        <input type="number" class="custom-text" name="minleave" placeholder="Minimum Study Leave">
+        <input type="number" class="custom-text" name="no_exams" placeholder="Enter Number of Exams">
         Enter Start Date<br>
-        <input type="date" class="custom-date" name="startdate"><br>
+        <input type="date" class="custom-date" name="startdate" >
         Holidays<br>
-        <ul id="dynamic-list"></ul>
+        <ul style="list-style-type:square; text-align: left; " id="dynamic-list"></ul>
         <input type="hidden" name="no_dates" id="no_dates" value=0>
-        <input type="submit" value="Next"btn1">
+        <input type="submit" value="Next" class="btn1">
+        
     </form>
-    Enter Holidays:<br>
-    <input type="date" id="candidate"/><br>
-    <button onclick="addItem()">add holiday</button>
-    <button onclick="removeItem()">remove holiday</button>
+    <div class="box">
+      Enter Holidays:<br>
+      <input type="date" id="candidate"/><br>
+      <button class = "btn2" onclick="addItem()" >Add holiday</button> &nbsp;&nbsp;
+      <button class = "btn2" onclick="removeItem()" >Remove holiday</button>
+    </div>
+    <br><br>
+    
   </div>
 </div>
 
