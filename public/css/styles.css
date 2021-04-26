@@ -112,6 +112,16 @@ body {
   height: 720px;
 }
 
+.cover-boxupdate{
+  color: #5c6bc0;
+  text-align: center;
+  margin-top: 5%;
+  background-color: #fff;
+  margin: 0;
+  padding: 5%;
+  height: 800px;
+}
+
 .catalog i{
   color: #8BD17C;
 }
@@ -147,6 +157,37 @@ body {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+.container-update{
+  margin: 0;
+  top: 150px;
+  left: 50%;
+  position: absolute;
+  text-align: center;
+  transform: translateX(-50%);
+  background-color: #f4eeff;
+  border-radius: 9px;
+  border-top: 10px solid #79a6fe;
+  border-bottom: 10px solid #8BD17C;
+  width: 800px;
+  height: 720px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.container-delete{
+  margin: 0;
+  top: 150px;
+  left: 50%;
+  position: absolute;
+  text-align: center;
+  transform: translateX(-50%);
+  background-color: #f4eeff;
+  border-radius: 9px;
+  border-top: 10px solid #79a6fe;
+  border-bottom: 10px solid #8BD17C;
+  width: 400px;
+  height: 650px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
 
 .social-icon {
   margin: 20px 10px;
@@ -154,6 +195,22 @@ body {
 }
 
 .container-reg{
+  margin-bottom: 300px;
+  top: 5d0px;
+  left: 50%;
+  position: absolute;
+  text-align: center;
+  transform: translateX(-50%);
+  background-color: #f4eeff;
+  border-radius: 9px;
+  border-top: 10px solid #79a6fe;
+  border-bottom: 10px solid #8BD17C;
+  width: 400px;
+  height: 850px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.container-schedform{
   margin-bottom: 300px;
   top: 5d0px;
   left: 50%;
@@ -190,7 +247,7 @@ body {
   margin-bottom: 70px;
 }
 
-.box input[type = "text"],.box input[type = "password"],.box input[type = "date"] {
+.box input[type = "text"],.box input[type = "password"],.box input[type = "number"],.box input[type = "date"] {
   display: block;
   margin: 20px auto;
   background: #dcd6f7;
@@ -207,6 +264,25 @@ body {
     transition: all .2s ease-out;
 
 }
+
+.box1 input[type = "text"],.box1 input[type = "password"],.box1 input[type = "number"],.box1 input[type = "date"] {
+  display: block;
+  margin: 20px auto;
+  background: #dcd6f7;
+  border: 0;
+  border-radius: 5px;
+  padding: 14px 10px;
+  width: 250px;
+  outline: none;
+  color: #565f79;
+    -webkit-transition: all .2s ease-out;
+    -moz-transition: all .2s ease-out;
+    -ms-transition: all .2s ease-out;
+    -o-transition: all .2s ease-out;
+    transition: all .2s ease-out;
+
+}
+
 ::-webkit-input-placeholder {
   color: #565f79;
 }
@@ -215,6 +291,7 @@ body {
   border: 1px solid #79A6FE;
 
 }
+
 
 .custom-select:focus {
   border: 1px solid #79A6FE;
@@ -229,6 +306,24 @@ body {
   border-radius: 5px;
   padding: 14px 10px;
   width: 320px;
+  height: 50px;
+  outline: none;
+  color: #565f79;
+  -webkit-transition: all .2s ease-out;
+  -moz-transition: all .2s ease-out;
+  -ms-transition: all .2s ease-out;
+  -o-transition: all .2s ease-out;
+  transition: all .2s ease-out;
+}
+
+.custom-selectsesh{
+  display: block;
+  margin: 20px auto;
+  background: #dcd6f7;
+  border: 0;
+  border-radius: 5px;
+  padding: 14px 10px;
+  width: 70px;
   height: 50px;
   outline: none;
   color: #565f79;
@@ -264,15 +359,53 @@ label span {
   width: 340px;
   height: 49px;
   font-size: 16px;
-  position: absolute;
-  top: 79%;
-  left: 8%;
   transition: 0.3s;
+  cursor: pointer;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.btn4{
+  border:0;
+  background: #7f5feb;
+  color: #dfdeee;
+  border-radius: 100px;
+  width: 340px;
+  height: 49px;
+  font-size: 16px;
+  transition: 0.3s;
+  cursor: pointer;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  margin-left: 765px;
+  margin-right: auto;
+}
+
+.btn4:hover {
+  background: #5d33e6;
+}
+.btn1:hover {
+  background: #5d33e6;
+}
+
+.btn2{
+  border:0;
+  background: #7f5feb;
+  color: #dfdeee;
+  border-radius: 100px;
+  transition: 0.3s;
+  height: 49px;
+  font-size: 16px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
   cursor: pointer;
 }
 
-
-.btn1:hover {
+.btn2:hover {
   background: #5d33e6;
 }
 

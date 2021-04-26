@@ -2,9 +2,9 @@
 <%- include('partials/header') %>
 
 <%- include('partials/navbarcoe') %>
-<div class="cover-box">
+<div class="cover-boxupdate">
   <div class="animated bounceInDown">
-    <div class="container-search">
+    <div class="container-update">
       <span class="animated tada"></span>
           <form name="form3" class="box" action="/confirmupdate" method="POST">
             <h4>Search<span>Result</span></h4>
@@ -12,7 +12,7 @@
             <% if(ecode == "0"){%>
               <h5>No matching results.</h5>
             <%}else{%>
-              <table class="exam-details">
+              <table class="exam-details" style="width: 80%;">
                 <tr>
                   <th>Exam Code</th>
                   <td><%= ecode %></td>
@@ -34,18 +34,21 @@
                   <td><input type="date" name="edate"></td>
                 </tr>
                 <tr>
-                  <select class="custom-select" name="esess">
+                  <th>New Session</th>
+                  <td><select class="custom-select" name="esess">
                       <option value="" disabled selected>Exam Session</option>
                       <option value="AN">Afternoon</option>
                       <option value="FN">Forenoon</option>
                   </select>
+                </td>
                 </tr>
               </table>
               <input type="hidden" value=<%= ecode %> name="ecode">
               <input type="submit" value="Reschedule" class="btn1">
             <%}%>
           </form>
-          <a href="/viewupdate" class="search-go-back">Go Back</a>
+         
+          <a style="margin-top:4%; margin-left: 3%;" href="/viewupdate" class="search-go-back">Go Back</a>
     </div>
   </div>
 </div>
