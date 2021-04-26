@@ -1,7 +1,7 @@
 <%- include('partials/header') %>
 
 <%- include('partials/navbarcoe') %>
-
+<div style="padding-top: 5%; background: #fff; padding-bottom: 5%;">
 <form id="form2" action="/examfinal" method="POST">
     <select id="edept"  class="custom-select" name="edept" onchange="changeColor()">
         <option value="" disabled selected>Exam Department</option>
@@ -20,14 +20,18 @@
         <input type="text" name="ecode<%= i %>" placeholder="Enter Exam Code">
         <input type="text" name="ename<%= i %>" placeholder="Enter Exam Name">
         <select name="esess<%= i %>" class="custom-selectsesh"  placeholder="Enter Exam Session">
-            <option value="fn">FN</option>
-            <option value="an">AN</option>
+            <option value="Forenoon">Forenoon</option>
+            <option value="Afternoon">Afternoon</option>
         </select>
-        
+
         <br>
-        
+
     <% } %>
-    </div>      
+    </div>
     <input type="hidden" name="nexams" value=<%= nexams %> >
     <input type="submit" class="btn4">
 </form>
+</div>
+
+
+<%- include('partials/footer') %>

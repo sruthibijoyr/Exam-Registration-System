@@ -14,17 +14,28 @@
           Enter Start Date<br>
           <input type="date" class="custom-date" name="startdate" >
           Holidays<br>
-          <ul style="list-style-type:square; text-align: left; " id="dynamic-list"></ul>
+          <table style="margin-left:23%">
+            <tr>
+              <th><ul style="list-style-type:square; text-align: left;" id="dynamic-list"></ul></th>
+            </tr>
+            <tr>
+              <th><div class = "btn2" style="margin-left:130px" onclick="removeItem()" >Remove</div></th>
+            </tr>
+          </table>
+          <br>
+          <div class="box">
+            Enter Holidays:<br>
+            <table style="margin-left:23%">
+              <tr>
+                <th ><input type="date" id="candidate" /></th>
+                <th><div class = "btn2" onclick="addItem()" >Add</div></th>
+              </tr>
+            </table>
+          </div>
           <input type="hidden" name="no_dates" id="no_dates" value=0>
           <input type="submit" value="Next" class="btn1">
 
       </form>
-      <div class="box">
-        Enter Holidays:<br>
-        <input type="date" id="candidate"/><br>
-        <button class = "btn2" onclick="addItem()" >Add holiday</button> &nbsp;&nbsp;
-        <button class = "btn2" onclick="removeItem()" >Remove holiday</button>
-      </div>
     </div>
   </div>
 </div>

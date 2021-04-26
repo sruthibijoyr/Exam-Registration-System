@@ -3,22 +3,25 @@
 
 <%- include('partials/navbarcoe') %>
 
-<div class="cover-box">
-  <i class="feature-icon fas fa-edit fa-6x"></i>
-  <h1 class="display-6 title">Enter exam code to reschedule</h1>
+<div style="padding-bottom: 5%; background: #fff">
+  <div class="cover-box">
+    <i class="feature-icon fas fa-edit fa-6x"></i>
+    <h1 class="display-6 title">Enter exam code to reschedule</h1>
 
-  <div class="container-catalog">
+    <div class="container-catalog">
 
-    <form action="/updateexam" method="POST">
-      <div class="searchBox">
-            <input class="searchInput" type="text" name="code" placeholder="Exam Code" autocomplete="off">
-            <button class="searchButton">
-                <i class="fas fa-search"></i>
-            </button>
-        </div>
-    </form>
+      <form action="/updateexam" method="POST">
+        <div class="searchBox">
+              <input class="searchInput" type="text" name="code" placeholder="Exam Code" autocomplete="off">
+              <button class="searchButton">
+                  <i class="fas fa-search"></i>
+              </button>
+          </div>
+      </form>
 
+    </div>
   </div>
+
 </div>
 
 

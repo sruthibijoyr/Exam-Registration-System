@@ -107,20 +107,20 @@ body {
   color: #5c6bc0;
   text-align: center;
   margin-top: 5%;
+  margin-bottom: 20%;
   background-color: #fff;
   margin: 0;
-  padding: 5%;
-  height: 720px;
+  padding: 10%;
 }
 
 .cover-boxupdate{
   color: #5c6bc0;
   text-align: center;
   margin-top: 5%;
+  margin-bottom: 20%;
   background-color: #fff;
   margin: 0;
-  padding: 5%;
-  height: 800px;
+  padding: 10%;
 }
 
 .catalog i{
@@ -144,11 +144,7 @@ body {
 
   margin-left: auto;
   margin-right: auto;
-  top: 150px;
-  left: 50%;
-  position: absolute;
   text-align: center;
-  transform: translateX(-50%);
   background-color: #f4eeff;
   border-radius: 9px;
   border-top: 10px solid #79a6fe;
@@ -160,33 +156,31 @@ body {
 
 .container-update{
   margin: 0;
-  top: 150px;
-  left: 50%;
-  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
   text-align: center;
-  transform: translateX(-50%);
-  background-color: #f4eeff;
-  border-radius: 9px;
-  border-top: 10px solid #79a6fe;
-  border-bottom: 10px solid #8BD17C;
-  width: 800px;
-  height: 720px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.container-delete{
-  margin: 0;
-  top: 150px;
-  left: 50%;
-  position: absolute;
-  text-align: center;
-  transform: translateX(-50%);
   background-color: #f4eeff;
   border-radius: 9px;
   border-top: 10px solid #79a6fe;
   border-bottom: 10px solid #8BD17C;
   width: 400px;
-  height: 650px;
+  margin-bottom: 3%;
+  padding-bottom: 3%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.container-delete{
+  margin: 0;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  background-color: #f4eeff;
+  border-radius: 9px;
+  border-top: 10px solid #79a6fe;
+  border-bottom: 10px solid #8BD17C;
+  width: 400px;
+  margin-bottom: 3%;
+  padding-bottom: 3%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -211,17 +205,16 @@ body {
 
 .container-schedform{
   margin-bottom: 300px;
-  top: 5d0px;
-  left: 50%;
-  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
   text-align: center;
-  transform: translateX(-50%);
   background-color: #f4eeff;
   border-radius: 9px;
   border-top: 10px solid #79a6fe;
   border-bottom: 10px solid #8BD17C;
-  width: 400px;
-  height: 850px;
+  width: 600px;
+  margin-bottom: 3%;
+  padding-bottom: 3%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -322,7 +315,7 @@ body {
   border: 0;
   border-radius: 5px;
   padding: 14px 10px;
-  width: 70px;
+  width: 250px;
   height: 50px;
   outline: none;
   color: #565f79;
@@ -389,8 +382,7 @@ label span {
   cursor: pointer;
   margin-bottom: 20px;
   margin-top: 20px;
-  margin-left: 765px;
-  margin-right: auto;
+  margin-left: 41%;
 }
 
 .btn4:hover {
@@ -406,13 +398,11 @@ label span {
   color: #dfdeee;
   border-radius: 100px;
   transition: 0.3s;
-  height: 49px;
-  font-size: 16px;
-  margin-bottom: 20px;
-  margin-top: 20px;
-  margin-left: auto;
-  margin-right: auto;
+  font-size: 12px;
   cursor: pointer;
+  width: 50px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .btn2:hover {
@@ -440,9 +430,6 @@ label span {
 .search-go-back{
     color: #5c7fda;
     text-decoration: none;
-    position: absolute;
-    top: 92%;
-    left: 43%;
 }
 
 .dnthave:hover, .have:hover {

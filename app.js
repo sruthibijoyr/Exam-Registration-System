@@ -184,12 +184,38 @@ app.get("/register",function(req,res){
 
 app.get("/dashboard",function(req,res){
   sess = req.session;
-  console.log(sess);
-  res.render("dashboard",{name:sess.user.name});
+  if(sess){
+    if(sess.usertype == null){
+      res.render("error");
+    }
+    else if(sess.usertype != "student"){
+      res.render("error");
+    }
+    else{
+        res.render("dashboard",{name:sess.user.name});
+    }
+  }
+  else{
+    res.render("error");
+  }
 });
 
 app.get("/view", function(req,res){
-    res.render("view");
+  sess = req.session;
+  if(sess){
+    if(sess.usertype == null){
+      res.render("error",{err:"session"});
+    }
+    else if(sess.usertype != "student"){
+      res.render("error",{err:"access"});
+    }
+    else{
+        res.render("view");
+    }
+  }
+  else{
+    res.render("error");
+  }
 });
 
 app.get("/logout", function(req,res){
@@ -261,6 +287,7 @@ app.post("/login", function(req,res){
             console.log(exams);
             sess = req.session;
             sess.user = student;
+            sess.usertype = "student";
             res.redirect("/dashboard");
           }
           else if(foundUser.usertype == "coe"){
@@ -288,6 +315,7 @@ app.post("/login", function(req,res){
               }
               sess = req.session;
               sess.user = coe;
+              sess.usertype = "coe";
               res.redirect("/coeinfo");
             });
           }
@@ -346,103 +374,249 @@ app.post("/registerExam", function(req,res){
 
 app.get("/viewreg", function(req,res){
   sess = req.session;
-  const user = sess.user;
-  var regs = user.registrations;
-
-  var hallticket = user.hallticket;
-  var flag;
-  var payments = [];
-
-  for(i=0;i<regs.length;++i){
-    flag = 0;
-    for(j=0;j<hallticket.length;++j){
-      if(hallticket[j].code == regs[i].code){
-        flag = 1;
-        break;
-      }
+  if(sess){
+    if(sess.usertype == null){
+      res.render("error",{err:"session"});
     }
-    payments.push(flag);
-  }
-  res.render("viewreg",{regexams:regs,pay:payments});
-});
+    else if(sess.usertype != "student"){
+      res.render("error");
+    }
+    else{
+      const user = sess.user;
+      var regs = user.registrations;
 
-app.get("/hallticket", function(req,res){
-  const sess = req.session;
-  const user = sess.user;
-  var hallticket = user.hallticket;
-  res.render("hallticket",{hallticket:hallticket, student: user});
-});
+      var hallticket = user.hallticket;
+      var flag;
+      var payments = [];
 
-app.get("/viewResults",function(req,res){
-  const sess = req.session;
-  const user = sess.user;
-  Mark.find({username: user.username}, function(err,foundResults){
-    if(foundResults){
-      var foundExams = [];
-      for(var i=0;i<foundResults.length;++i){
-        for(var j=0;j<exams.length;++j){
-          if(exams[j].getCode() == foundResults[i].exam){
-            foundExams.push(exams[j]);
+      for(i=0;i<regs.length;++i){
+        flag = 0;
+        for(j=0;j<hallticket.length;++j){
+          if(hallticket[j].code == regs[i].code){
+            flag = 1;
             break;
           }
         }
+        payments.push(flag);
       }
-      res.render("viewResults",{results:foundResults, exams:foundExams});
+      res.render("viewreg",{regexams:regs,pay:payments});
+    }
+  }
+  else{
+    res.render("error");
+  }
+});
+
+app.get("/hallticket", function(req,res){
+  sess = req.session;
+  if(sess){
+    if(sess.usertype == null){
+      res.render("error");
+    }
+    else if(sess.usertype != "student"){
+      res.render("error");
     }
     else{
-      res.redirect("/dashboard");
+      const sess = req.session;
+      const user = sess.user;
+      var hallticket = user.hallticket;
+      res.render("hallticket",{hallticket:hallticket, student: user});
     }
-  });
+  }
+  else{
+    res.render("error");
+  }
+});
+
+app.get("/viewResults",function(req,res){
+  sess = req.session;
+  if(sess){
+    if(sess.usertype == null){
+      res.render("error");
+    }
+    else if(sess.usertype != "student"){
+      res.render("error");
+    }
+    else{
+      const user = sess.user;
+      Mark.find({username: user.username}, function(err,foundResults){
+        if(foundResults){
+          var foundExams = [];
+          for(var i=0;i<foundResults.length;++i){
+            for(var j=0;j<exams.length;++j){
+              if(exams[j].getCode() == foundResults[i].exam){
+                foundExams.push(exams[j]);
+                break;
+              }
+            }
+          }
+          res.render("viewResults",{results:foundResults, exams:foundExams});
+        }
+        else{
+          res.redirect("/dashboard");
+        }
+      });
+    }
+  }
+  else{
+    res.render("error");
+  }
 });
 
 //------------------------COE---------------------------
 
 app.get("/coeinfo",function(req,res){
   sess = req.session;
-  const user = sess.user;
-  res.render("coeinfo",{name:user.name});
+  if(sess){
+    if(sess.usertype == null){
+      res.render("error");
+    }
+    else if(sess.usertype != "coe"){
+      res.render("error");
+    }
+    else{
+      const user = sess.user;
+      res.render("coeinfo",{name:user.name});
+    }
+  }
 });
 
 app.get("/viewcoe", function(req,res){
-  res.render("viewcoe");
+  sess = req.session;
+  if(sess){
+    if(sess.usertype == null){
+      res.render("error");
+    }
+    else if(sess.usertype != "coe"){
+      res.render("error");
+    }
+    else{
+      res.render("viewcoe");
+    }
+  }
 });
 
 app.get("/viewupdate", function(req,res){
-  res.render("viewupdate");
+  sess = req.session;
+  if(sess){
+    if(sess.usertype == null){
+      res.render("error");
+    }
+    else if(sess.usertype != "coe"){
+      res.render("error");
+    }
+    else{
+      res.render("viewupdate");
+    }
+  }
 });
 
 app.get("/viewdelete", function(req,res){
-  res.render("viewdelete");
+  sess = req.session;
+  if(sess){
+    if(sess.usertype == null){
+      res.render("error");
+    }
+    else if(sess.usertype != "coe"){
+      res.render("error");
+    }
+    else{
+      res.render("viewdelete");
+    }
+  }
 });
 
 app.get("/manage", function(req,res){
-  res.render("manage");
+  sess = req.session;
+  if(sess){
+    if(sess.usertype == null){
+      res.render("error");
+    }
+    else if(sess.usertype != "coe"){
+      res.render("error");
+    }
+    else{
+      res.render("manage");
+    }
+  }
 });
 
 app.get("/addexam", function(req,res){
-  res.render("addexam");
+  sess = req.session;
+  if(sess){
+    if(sess.usertype == null){
+      res.render("error");
+    }
+    else if(sess.usertype != "coe"){
+      res.render("error");
+    }
+    else{
+      res.render("addexam");
+    }
+  }
 });
 
 app.get("/scheduleexam", function(req, res){
   sess = req.session;
-  const uname = sess.username;
-  res.render("scheduleexam", {username: uname});
+  if(sess){
+    if(sess.usertype == null){
+      res.render("error");
+    }
+    else if(sess.usertype != "coe"){
+      res.render("error");
+    }
+    else{
+      const uname = sess.username;
+      res.render("scheduleexam", {username: uname});
+    }
+  }
 });
 
 app.get("/examentry", function(req, res){
   sess = req.session;
-  const uname = sess.username;
-  res.render("examentry", {username: uname});
+  if(sess){
+    if(sess.usertype == null){
+      res.render("error");
+    }
+    else if(sess.usertype != "coe"){
+      res.render("error");
+    }
+    else{
+      const uname = sess.username;
+      res.render("examentry", {username: uname});
+    }
+  }
 });
 
 app.get("/examfinal", function(req, res){
   sess = req.session;
-  const uname = sess.username;
-  res.render("examfinal", {username: uname});
+  if(sess){
+    if(sess.usertype == null){
+      res.render("error");
+    }
+    else if(sess.usertype != "coe"){
+      res.render("error");
+    }
+    else{
+      const uname = sess.username;
+      res.render("examfinal", {username: uname});
+    }
+  }
 });
 
 app.get("/addresult", function(req,res){
-  res.render("addresult");
+  sess = req.session;
+  if(sess){
+    if(sess.usertype == null){
+      res.render("error");
+    }
+    else if(sess.usertype != "coe"){
+      res.render("error");
+    }
+    else{
+      res.render("addresult");
+    }
+  }
 });
 
 app.post("/searchcoe", function(req,res){
@@ -540,7 +714,7 @@ app.post("/addexam", function(req,res){
       }
     }
     if(flag == 1)
-      res.render("deletedetailscoe",{ecode:exams[i].getCode(),ename:exams[i].getName(), edate: exams[i].getDate().toString().slice(0,1), esess: exams[i].getSession(), edept: exams[i].getDepartment()});
+      res.render("deletedetailscoe",{ecode:exams[i].getCode(),ename:exams[i].getName(), edate: exams[i].getDate().toString().slice(0,15), esess: exams[i].getSession(), edept: exams[i].getDepartment(), num: exams[i].getNum()});
     else
       res.render("deletedetailscoe",{ecode:0});
   });
@@ -560,7 +734,7 @@ app.post("/addexam", function(req,res){
       var regs = students[i].getRegistrations();
       var new_regs = [];
       var codes =[];
-      var payed = [];
+      var paid = [];
       var hall = students[i].getHallticket();
       var new_hall = [];
       for(j=0;j<regs.length;++j){
@@ -572,29 +746,40 @@ app.post("/addexam", function(req,res){
       for(j=0;j<hall.length;++j){
         if(hall[j].getCode() != code){
           new_hall.push(hall[j]);
-          payed.push(hall[j].getCode())
+          paid.push(hall[j].getCode())
         }
       }
       var payments = [];
-      for(i=0;i<codes.length;++i){
-        if(codes[i] in payed){
+      for(j=0;j<codes.length;++j){
+        if(codes[j] in paid){
           payments.push(1);
         }
         else{
           payments.push(0);
         }
       }
-
       students[i].setRegistrations(new_regs);
       students[i].setHallticket(new_hall);
       User.updateOne({username:students[i].getUsername()},{exams:codes}).exec((err, posts) => {});
       User.updateOne({username:students[i].getUsername()},{payment:payments}).exec((err, posts) => {});
     }
+    Mark.deleteMany({exam: code}, function(err, foundExams){});
     Exam.deleteOne({ecode:code}, function(err,foundExam){res.redirect("/viewdelete");});
   });
 
   app.get("/studentsearch",function(req,res){
-    res.render("displayStudents", {students : students});
+    sess = req.session;
+    if(sess){
+      if(sess.usertype == null){
+        res.render("error");
+      }
+      else if(sess.usertype != "coe"){
+        res.render("error");
+      }
+      else{
+        res.render("displayStudents", {students : students});
+      }
+    }
   });
 
   app.post("/examentry", function(req,res){
@@ -658,23 +843,34 @@ app.post("/addexam", function(req,res){
   });
 
   app.get("/viewResultscoe",function(req,res){
-    Mark.find({}, function(err,foundResults){
-      if(foundResults){
-        var foundExams = [];
-        for(var i=0;i<foundResults.length;++i){
-          for(var j=0;j<exams.length;++j){
-            if(exams[j].getCode() == foundResults[i].exam){
-              foundExams.push(exams[j]);
-              break;
-            }
-          }
-        }
-        res.render("viewResultscoe",{results:foundResults, exams:foundExams});
+    sess = req.session;
+    if(sess){
+      if(sess.usertype == null){
+        res.render("error");
+      }
+      else if(sess.usertype != "coe"){
+        res.render("error");
       }
       else{
-        res.redirect("/dashboard");
+        Mark.find({}, function(err,foundResults){
+          if(foundResults){
+            var foundExams = [];
+            for(var i=0;i<foundResults.length;++i){
+              for(var j=0;j<exams.length;++j){
+                if(exams[j].getCode() == foundResults[i].exam){
+                  foundExams.push(exams[j]);
+                  break;
+                }
+              }
+            }
+            res.render("viewResultscoe",{results:foundResults, exams:foundExams});
+          }
+          else{
+            res.redirect("/dashboard");
+          }
+        });
       }
-    });
+    }
   });
 
   app.post("/examfinal", function(req,res){
@@ -721,44 +917,55 @@ app.post("/addexam", function(req,res){
           res.send(err);
         }
         else{
-          res.redirect("/addexam");
+          res.redirect("/addresult");
         }
       });
     });
 
   app.get("/:url", function(req,res){
-    const url = req.params.url;
-    newUrl = url.slice(0, 3);
-    arg = url.slice(3,);
-    console.log(newUrl, arg);
     sess = req.session;
-    const user = sess.user;
-    if(newUrl == "pay")
-    {
-      const examCode = arg;
-      var regs = user.registrations;
-      var i,j;
-      for(i=0;i<regs.length;++i){
-        if(regs[i].code == examCode){
-          sess.user.hallticket.push(regs[i]);
-        }
+    if(sess){
+      if(sess.usertype == null){
+        res.render("error");
       }
-      var hallticket = user.hallticket;
-      var flag;
-      var payments = [];
-
-      for(i=0;i<regs.length;++i){
-        flag = 0;
-        for(j=0;j<hallticket.length;++j){
-          if(hallticket[j].code == regs[i].code){
-            flag = 1;
-            break;
+      else if(sess.usertype != "student"){
+        res.render("error");
+      }
+      else{
+        const url = req.params.url;
+        newUrl = url.slice(0, 3);
+        arg = url.slice(3,);
+        console.log(newUrl, arg);
+        sess = req.session;
+        const user = sess.user;
+        if(newUrl == "pay")
+        {
+          const examCode = arg;
+          var regs = user.registrations;
+          var i,j;
+          for(i=0;i<regs.length;++i){
+            if(regs[i].code == examCode){
+              sess.user.hallticket.push(regs[i]);
+            }
           }
+          var hallticket = user.hallticket;
+          var flag;
+          var payments = [];
+
+          for(i=0;i<regs.length;++i){
+            flag = 0;
+            for(j=0;j<hallticket.length;++j){
+              if(hallticket[j].code == regs[i].code){
+                flag = 1;
+                break;
+              }
+            }
+            payments.push(flag);
+          }
+          User.updateOne({username:user.username},{payment:payments}).exec((err, posts) => {});
+          res.redirect("/viewreg");
         }
-        payments.push(flag);
       }
-      User.updateOne({username:user.username},{payment:payments}).exec((err, posts) => {});
-      res.redirect("/viewreg");
     }
   });
 

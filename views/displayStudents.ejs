@@ -42,10 +42,12 @@
             <% } %>
           </th>
           <th class="student-col">
-            <% var payed = students[i].getHallticket() %>
-            <% for(var j=0;j<payed.length;++j){ %>
-              <%= payed[j].getCode() %>
-              <br>
+            <% var paid = students[i].getHallticket() %>
+            <% for(var j=0;j<paid.length;++j){ %>
+              <%= paid[j].getCode() %>
+              <%if(j!=paid.length-1){%>
+                ,
+              <%}%>
             <% } %>
           </th>
         </tr>
