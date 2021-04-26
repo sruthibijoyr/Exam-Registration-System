@@ -133,9 +133,7 @@ app.use(bodyParser.urlencoded({
   extended:true
 }));
 
-//mongoose.connect("mongodb://localhost:27017/examregDB");
-
-mongoose.connect("mongodb+srv://exam-admin:exam@cluster0.ocxae.mongodb.net/examDB");
+mongoose.connect("mongodb://localhost:27017/examregDB");
 
 const examSchema = {
   ecode: String,
