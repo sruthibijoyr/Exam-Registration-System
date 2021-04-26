@@ -7,20 +7,25 @@
       <h4>User<span>Register</span></h4>
       <br>
       <h5>Sign up to create your account.</h5>
+        <input type="text" name="name" placeholder="Full name" autocomplete="off">
         <input type="text" name="username" placeholder="Username" autocomplete="off">
-        <i class="typcn typcn-eye" id="eye"></i>
         <input type="password" name="password" placeholder="Passsword" id="pwd" autocomplete="off">
-        <i class="typcn typcn-eye" id="eye"></i>
-        <select id="select-ele" class="custom-select" name="usertype">
-          <option value="" disabled selected>User type</option>
-          <option value="student">Student</option>
-          <option value="coe">CoE</option>
+        <select class="custom-select" name="department">
+          <option value="" disabled selected>Department</option>
+          <option value="CSE">Computer Science</option>
+          <option value="IT">IT</option>
+          <option value="Mechanical">Mechanical</option>
+          <option value="Civil">Civil</option>
+          <option value="Chemical">Chemical</option>
         </select>
+        <select class="custom-select" name="gender">
+          <option value="" disabled selected>Gender</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </select>
+        <input type="date" name="dob" placeholder="Date of birth" autocomplete="off">
         <input type="submit" value="Sign Up" class="btn1">
       </form>
         <a href="/" class="have">Already have an account? Sign in</a>
   </div>
 </div>
-
-
-<%- include('partials/footer') %>

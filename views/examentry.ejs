@@ -1,0 +1,29 @@
+<%- include('partials/header') %>
+
+<%- include('partials/navbarcoe') %>
+
+<form id="form2" action="/examfinal" method="POST">
+    <select id="edept" name="edept" onchange="changeColor()">
+        <option value="" disabled selected>Exam Department</option>
+        <option value="cse">Computer Science</option>
+        <option value="it">Information Technology</option>
+        <option value="ece">Electronics and Communicationz</option>
+        <option value="eee">Electrical and Electronics</option>
+        <option value="mech">Mechanical</option>
+        <option value="civil">Civil</option>
+        <option value="chem">Chemical</option>
+        <option value="bme">Bio Medical</option>
+    </select><br>
+    <% for (var i =0; i < nexams;  i++ ) { %>
+        <input type="date" name="edate<%= i %>" value= <%= edates[i] %> >
+        <input type="text" name="ecode<%= i %>" placeholder="Enter Exam Code">
+        <input type="text" name="ename<%= i %>" placeholder="Enter Exam Name">
+        <select name="esess<%= i %>" placeholder="Enter Exam Session">
+            <option value="fn">FN</option>
+            <option value="an">AN</option>
+        </select>
+        <br>
+    <% } %>
+    <input type="hidden" name="nexams" value=<%= nexams %> >
+    <input type="submit">
+</form>

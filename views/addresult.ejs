@@ -1,0 +1,22 @@
+<%- include('partials/header') %>
+<%- include('partials/navbarcoe') %>
+<div class="cover-box">
+  <div class="animated bounceInDown">
+    <div class="container-reg" style="height:700px">
+      <span class="animated tada" ></span>
+      <form name="form2" class="box" action="/addresult" method="POST">
+        <h4>Add<span> Exam</span></h4>
+        <br>
+          <input type="text" name="sname" placeholder="Student Name" autocomplete="off">
+          <input type="text" name="ecode" placeholder="Exam Code" autocomplete="off">
+          <input type="text" name="marks" placeholder="Enter Marks">
+          <input type="file" name="marks_file" placeholder="Upload Sheet">
+          <input type="submit" value="Add Result" class="btn1">
+        </form>
+    </div>
+  </div>
+<br>
+</div>
+
+
+<%- include('partials/footer') %>

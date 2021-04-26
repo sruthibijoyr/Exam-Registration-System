@@ -13,12 +13,16 @@
   <div class="row">
 
     <% for(var i=0; i<regexams.length; i++) {%>
-    <% var link = "/"+regexams[i]%>
+    <% var link = "/pay"+regexams[i].code%>
     <div class="container">
       <div class="card-deck mb-3 text-center">
         <div class="card mb-4 shadow-sm">
           <div class="card-header">
-            <h4 class="my-0 font-weight-normal">Exam Code <%= regexams[i] %></h4>
+            <h4 class="my-0 font-weight-normal">Exam Code <%= regexams[i].code %></h4>
+            <br>
+            <h5 class="my-0 font-weight-normal">Exam Name <%= regexams[i].name %></h5>
+            <br>
+            <h5 class="my-0 font-weight-normal">Schedule <%= regexams[i].date.slice(0, 10) %>, <%= regexams[i].session %> </h5>
           </div>
           <div class="card-body">
             <% if(pay[i]==0){ %>
@@ -26,7 +30,6 @@
             <%} else { %>
               <a class="btn-disabled" href=<%= link %> ><button type="button" disabled class="btn btn-lg btn-block btn-primary ">Payed</button></a>
             <% } %>
-
           </div>
         </div>
       </div>

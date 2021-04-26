@@ -1,0 +1,26 @@
+<%- include('partials/header') %>
+
+
+<%- include('partials/navbarcoe') %>
+
+<div class="cover-box">
+  <i class="fas fa-book-open fa-6x "></i>
+  <h1 class="display-6 title">Enter Exam Code</h1>
+
+  <div class="container-catalog">
+
+    <form action="/completeExam" method="POST">
+      <div class="searchBox">
+            <input class="searchInput" type="text" name="code" placeholder="Exam Code" autocomplete="off">
+            <button class="searchButton">
+                <i class="fas fa-search"></i>
+            </button>
+      </div>
+    </form>
+
+  </div>
+</div>
+
+
+
+<%- include('partials/footer') %>

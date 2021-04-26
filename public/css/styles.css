@@ -7,6 +7,7 @@ body {
   padding: 0;
   background-color: #ccc1ff ;
   background-size: cover;
+  font-family: "Ubuntu";
 }
 
 
@@ -142,7 +143,7 @@ body {
   border-top: 10px solid #79a6fe;
   border-bottom: 10px solid #8BD17C;
   width: 400px;
-  height: 500px;
+  height: 600px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -153,8 +154,8 @@ body {
 }
 
 .container-reg{
-  margin: 0;
-  top: 100px;
+  margin-bottom: 300px;
+  top: 5d0px;
   left: 50%;
   position: absolute;
   text-align: center;
@@ -164,7 +165,7 @@ body {
   border-top: 10px solid #79a6fe;
   border-bottom: 10px solid #8BD17C;
   width: 400px;
-  height: 590px;
+  height: 850px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -487,6 +488,81 @@ label span {
   padding: 3% 7%;
   text-align: center;
   background-color: #fff;
+}
+
+.container-ht{
+                margin-top: 0;
+                padding-top: 10%;
+                margin-left: auto;
+                margin-right: auto;
+                text-align: center;
+                background-color: #f4eeff;
+                border-radius: 9px;
+                border-top: 10px solid #79a6fe;
+                border-bottom: 10px solid #8BD17C;
+                width: 700px;
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                padding: 3%;
+}
+
+
+
+.container-tablerec{
+                margin: 0;
+                margin-top: 3%;
+                text-align: center;
+                color: #5c6bc0;
+                border-radius: 9px;
+                width: 600px;
+                font-size: 1.2em;
+                padding: 3%;
+                font-family: 'Roboto', sans-serif;
+                font-weight: bold;
+              }
+
+.hallticket-img{
+  float: right;
+  width: 150px;
+  margin-top: 3%;
+}
+
+.info-heading{
+  font-size: 30px;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 300;
+  text-align: center;
+  margin-bottom: 15px;
+}
+.tbl-header table,.tbl-content table{
+  width:100%;
+  table-layout: fixed;
+}
+.tbl-header{
+  background-color: rgba(255,255,255,0.3);
+}
+.tbl-content{
+  height:300px;
+  overflow-x:auto;
+  margin-top: 0px;
+  border: 1px solid rgba(255,255,255,0.3);
+}
+.tbl-header th, .tbl-content th{
+  padding: 20px 15px;
+  text-align: left;
+  font-weight: 500;
+  font-size: 12px;
+  color: #fff;
+  text-transform: uppercase;
+}
+.tbl-header td, .tbl-content td{
+  padding: 15px;
+  text-align: left;
+  vertical-align:middle;
+  font-weight: 300;
+  font-size: 12px;
+  color: #fff;
+  border-bottom: solid 1px rgba(255,255,255,0.1);
 }
 
 .footer{

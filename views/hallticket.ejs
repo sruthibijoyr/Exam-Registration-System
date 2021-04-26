@@ -1,0 +1,35 @@
+<%- include('partials/header') %>
+<%- include('partials/navbar') %>
+
+  <div class="animated bounceInDown" style="padding-top:5%; background:#fff; padding-bottom: 9%;">
+    <div class="container-ht">
+      <% if(student.gender == "Female"){ %>
+        <img class="hallticket-img" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmaxcdn.icons8.com%2FShare%2Ficon%2FUsers%2Fcircled_user_female1600.png&f=1&nofb=1" alt="">
+      <%}else{%>
+        <img class="hallticket-img" src="https://www.pinclipart.com/picdir/big/165-1653686_female-user-icon-png-download-user-colorful-icon.png" alt="">
+      <%}%>
+      <h1 class="display-5" style="color:#5c6bc0"><%= student.name %></h1>
+      <p class="my-2 font-weight-normal">     ID :  <%= student.username %> | DOB : <%= student.dob.slice(0,10) %> </p>
+      <p class="my-2 font-weight-normal">    Gender : <%= student.gender %> | Department : <%= student.department %></p>
+      <div class="my-2 font-weight-normal" >
+      <table style="width:100%;">
+        <tr>
+          <th>Code</th>
+          <th>Name</th>
+          <th>Date</th>
+          <th>Session</th>
+        </tr>
+        <% for(var i=0;i<hallticket.length;++i){ %>
+          <tr style="border-top: solid 0.5px">
+            <td><%= hallticket[i].code %></td>
+            <td><%= hallticket[i].name %></td>
+            <td><%= hallticket[i].date.slice(0,10) %></td>
+            <td><%= hallticket[i].session %></td>
+          </tr>
+        <% } %>
+      </table>
+    </div>
+    </div>
+  </div>
+
+<%- include('partials/footer') %>

@@ -6,7 +6,7 @@
   <div class="animated bounceInDown">
     <div class="container-search">
       <span class="animated tada"></span>
-          <form name="form3" class="box" action="/addexam" method="POST">
+          <form name="form3" class="box" action="/confirmupdate" method="POST">
             <h4>Search<span>Result</span></h4>
             <br>
             <% if(ecode == "0"){%>
@@ -26,14 +26,22 @@
                   <td><%= edate %></td>
                 </tr>
                 <tr>
+                  <th>Exam Session</th>
+                  <td><%= esess %></td>
+                </tr>
+                <tr>
                   <th>Exam New Date</th>
                   <td><input type="date" name="edate"></td>
                 </tr>
+                <tr>
+                  <select class="custom-select" name="esess">
+                      <option value="" disabled selected>Exam Session</option>
+                      <option value="AN">Afternoon</option>
+                      <option value="FN">Forenoon</option>
+                  </select>
+                </tr>
               </table>
-              <input type="hidden" name="ename" value="<%= ename %>">
-              <input type="hidden" name="ecode" value="<%= ecode %>">
-              <input type="hidden" name="edept" value="<%= edept %>">
-              <input type="hidden" name="esess" value="<%= esess %>">
+              <input type="hidden" value=<%= ecode %> name="ecode">
               <input type="submit" value="Reschedule" class="btn1">
             <%}%>
           </form>

@@ -1,0 +1,70 @@
+<%- include('partials/header') %>
+
+<%- include('partials/navbarcoe') %>
+
+<div class="animated bounceInDown">
+  <div class="container-reg">
+    <span class="animated tada" ></span>
+    <form name="form2" id="form2" class="box" action="/examentry" method="POST">
+        <h4>Schedule<span> Exam</span></h4>
+        <br>
+        Enter Minimum Leave<br>
+        <input type="number" class="custom-text" name="minleave" placeholder="Minimum Study Leave"><br>
+        Enter Number of Exams<br>
+        <input type="number" class="custom-text" name="no_exams" placeholder="Enter Number of Exams"><br>
+        Enter Start Date<br>
+        <input type="date" class="custom-date" name="startdate"><br>
+        Holidays<br>
+        <ul id="dynamic-list"></ul>
+        <input type="hidden" name="no_dates" id="no_dates" value=0>
+        <input type="submit" value="Next"btn1">
+    </form>
+    Enter Holidays:<br>
+    <input type="date" id="candidate"/><br>
+    <button onclick="addItem()">add holiday</button>
+    <button onclick="removeItem()">remove holiday</button>
+  </div>
+</div>
+
+<script>
+  var num = 0
+  function addItem(){
+      var ul = document.getElementById("dynamic-list");
+      var candidate = document.getElementById("candidate");
+      var li = document.createElement("li");
+      li.setAttribute('id',candidate.value+"list");
+      li.appendChild(document.createTextNode(candidate.value));
+      ul.appendChild(li);
+
+      var f = document.getElementById("form2");
+      console.log(f)
+      var x = document.createElement("INPUT");
+      x.setAttribute('type', 'hidden');
+      var name = "date" + num
+      x.setAttribute('name', name);
+      x.setAttribute('id', candidate.value);
+      x.setAttribute('value', candidate.value);
+      f.appendChild(x)
+      num += 1;
+
+      document.getElementById("no_dates").value = num
+
+  }
+
+  function removeItem(){
+      var ul = document.getElementById("dynamic-list");
+      var candidate = document.getElementById("candidate");
+      var item = document.getElementById(candidate.value+"list");
+      ul.removeChild(item);
+
+      var f = document.getElementById("form2");
+      var x = document.getElementById(candidate.value);
+      f.removeChild(x)
+      num -= 1;
+
+      document.getElementById("no_dates").value = num
+  }
+</script>
+
+
+<%- include('partials/footer') %>
